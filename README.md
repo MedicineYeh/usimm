@@ -18,11 +18,10 @@ Seth H. Pugsley, Aniruddha N. Udipi, Ali Shafiee, Kshitij Sudan, Manu Awasthi.
 We also received traces and suggestions from other JWAC MSC organizers:
 Zeshan Chishti (Intel), Alaa R. Alameldeen (Intel), Eric Rotenberg (NC State)
 
-Code download: http://www.cs.utah.edu/~rajeev/usimm-v1.3.tar.gz
+* Code download: http://www.cs.utah.edu/~rajeev/usimm-v1.3.tar.gz
+* USIMM Tech Report: http://www.cs.utah.edu/~rajeev/pubs/usimm.pdf
+* The JWAC MSC website: http://www.cs.utah.edu/~rajeev/jwac12/
 
-USIMM Tech Report: http://www.cs.utah.edu/~rajeev/pubs/usimm.pdf
-
-The JWAC MSC website: http://www.cs.utah.edu/~rajeev/jwac12/
 ------------------------------------------------------------------------------
 
 
@@ -46,7 +45,7 @@ The root directory has the following directories and files:
 * parse.perl: This is for parsing the simulation result into `stats.csv`.
 * CRAPL-LICENSE.txt: The CRAPL license.
 
-# Getting Start 
+## Build the sources
 1. `cd src/` The src directory.
 2. `make clean`
 3. `make` Build binaries.
