@@ -2,7 +2,7 @@ SRCS=main.c memory_controller.c
 OBJS=$(addprefix $(OUT_DIR)/, $(patsubst %.c, %.o, $(SRCS)))
 # TODO : Make this to the prefix of your target files. EX: scheduler
 NAME_RULE="scheduler-*.c"
-TARGETS=$(shell ls "./$(NAME_RULE)" | awk '{print $$1}')
+TARGETS=$(shell ls "./$(NAME_RULE)" | awk '{print $$1}' | sed -e 's/\.c//g') 
 
 # TODO : Choose your directories
 SRC_DIR=./
@@ -15,26 +15,26 @@ ifndef PWRN
 	PWRN=1
 endif
 
-CFLAGS=-O3 -std=c99 -Wall
+CFLAGS=-O2 -std=c99 -Wall
 
 all	:	$(TARGETS)
 
 # General make
 $(TARGETS)	:	$(OBJS) 
-	@echo "building $* ..."
+	@echo "building $* ... $(TARGETS)"
 	@mkdir -p $(OUT_BIN_DIR)
-	$(CC) $(CFLAGS) -o $(OUT_BIN_DIR)/$* $(OBJS) $@
+	$(CC) $(CFLAGS) -o $(OUT_BIN_DIR)/$@ $(OBJS) $@.c
 
 # Make yours if you define variables which is conflict with others or you want to name by your-self. 
-scheduler-frfcfs.c	:	$(OBJS)
+scheduler-frfcfs	:	$(OBJS)
 	@echo "building $* ..."
 	@mkdir -p $(OUT_BIN_DIR)
-	$(CC) $(CFLAGS) -DCAPN=$(CAPN) -o $(OUT_BIN_DIR)/$*-$(CAPN) $(OBJS) $@
+	$(CC) $(CFLAGS) -DCAPN=$(CAPN) -o $(OUT_BIN_DIR)/$@-$(CAPN) $(OBJS) $@.c
 
-scheduler-pwrdn.c	:	$(OBJS)
+scheduler-pwrdn	:	$(OBJS)
 	@echo "building $* ..."
 	@mkdir -p $(OUT_BIN_DIR)
-	$(CC) $(CFLAGS) -DPWRN=$(PWRN) -o $(OUT_BIN_DIR)/$*-$(PWRN) $(OBJS) $@
+	$(CC) $(CFLAGS) -DPWRN=$(PWRN) -o $(OUT_BIN_DIR)/$@-$(PWRN) $(OBJS) $@.c
 
 $(OUT_DIR)/%.o	:	%.c
 	@mkdir -p $(@D)
