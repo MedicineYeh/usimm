@@ -1,8 +1,7 @@
+# USIMM: the Utah SImulated Memory Module
+## Version 1.3
 
 ------------------------------------------------------------------------------
-USIMM: the Utah SImulated Memory Module
-Version 1.3
-
 USIMM is distributed under the CRAPL (see CRAPL-LICENSE.txt
 in this directory).  In spite of the tongue-in-cheek terms of
 the license, we will be supporting the USIMM infrastructure.  
@@ -27,8 +26,8 @@ The JWAC MSC website: http://www.cs.utah.edu/~rajeev/jwac12/
 ------------------------------------------------------------------------------
 
 
-GETTING STARTED
----------------
+# GETTING STARTED
+------------------------------------------------------------------------------
 
 If you've reached this far, you've already been able to unzip and
 untar the distribution with:
@@ -36,25 +35,34 @@ gunzip usimm-v1.3.tar.gz
 tar xvf usimm-v1.3.tar
 
 The root directory has the following directories and files:
-src/      : Code source files
-bin/      : Houses the usimm executable
-obj/      : Houses the intermediate object files for the source files
-input/    : Has the (simulated) system configuration files and input traces
-output/   : Can store the simulation outputs
-runsim    : A script to execute a few example simulations
-README.txt: this file!
-usimm.pdf : The USIMM tech report
-CRAPL-LICENSE.txt: The CRAPL license.
+* src/      : Code source files
+* bin/      : Houses the usimm executable
+* obj/      : Houses the intermediate object files for the source files
+* input/    : Has the (simulated) system configuration files and input traces
+* output/   : Store the simulation outputs
+* runsim    : A script to execute a few example simulations
+* README.md: this file!
+* usimm.pdf : The USIMM tech report
+* parse.perl: This is for parsing the simulation result into `stats.csv`.
+* CRAPL-LICENSE.txt: The CRAPL license.
 
-To get started, 
-cd src/
-make clean
-make
+# Getting Start 
+1. `cd src/` The src directory.
+2. `make clean`
+3. `make` Build binaries.
 
-This produces a usimm executable in the bin/ directory.  To run the
-example simulation script,
-cd ..
-./runsim
+This produces a usimm executable in the bin/ directory.  To run the 
+example simulation script.
+
+4. Go to repository root directory by `cd ../`
+5. Download input from .... It's your bussiness!
+6. Modify __./runsim__ to your needs.
+7. Run executable `./runsim` to check whether the environment is set correctly.
+8. Execute `ps` to check whether it's running in the background.
+
+If you want to know how to add your new scheduler algorithm, it's very easy!! 
+All you need to do is __name your .c file__ by __scheduler-XXXX.c__ `XXXX` is 
+your algorithm's name. Makefile will automatically compile it! 
 
 The simulation should finish in tens of minutes.  Use a truncated version of
 the trace files for shorter tests.  To examine the simulation outputs,
@@ -66,8 +74,9 @@ the DRAM chip configuration files.  The input/ directory also
 contains 13 trace files for 10 different benchmarks.  Please see
 Appendix C of the USIMM Tech report for details on these benchmarks.
 
-CODE ORGANIZATION
------------------
+# CODE ORGANIZATION
+------------------------------------------------------------------------------
+More detail at http://www.cs.utah.edu/%7Erajeev/jwac12/
 
 The src/ directory has the following files:
 
@@ -96,8 +105,8 @@ utils.h : A few utility functions.
 utlist.h : Utility functions to manage linked lists.
 
 
-SAMPLE SCHEDULERS
------------------
+# SAMPLE SCHEDULERS
+------------------------------------------------------------------------------
 
 The src/ directory also includes the following example simple schedulers:
 
@@ -105,4 +114,8 @@ scheduler-fcfs.c/h    : Basic FCFS, plus a periodic write drain mechanism.
 
 scheduler-close.c/h   : Precharges banks during idle cycles soon after a column rd/wr.
 
+
+If you want to know how to add your new scheduler algorithm, it's very easy!! 
+All you need to do is __name your .c file__ by __scheduler-XXXX.c__ `XXXX` is 
+your algorithm's name. Makefile will automatically compile it! 
 
