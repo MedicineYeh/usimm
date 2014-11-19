@@ -1,4 +1,6 @@
+#!/bin/bash
 
-bin/scheduler-close input/1channel.cfg input/comm2 > output/c2-1 &
-bin/scheduler-fcfs input/1channel.cfg input/comm1 input/comm1 > output/c1-c1-1 &
+echo "Running..."
+bin/scheduler-fcfs input/1channel.cfg input/test_set input/test_set > output/c1-c1-1
+echo "Done"
 

@@ -1,10 +1,10 @@
 SRCS=main.c memory_controller.c
 OBJS=$(addprefix $(OUT_DIR)/, $(patsubst %.c, %.o, $(SRCS)))
-# TODO : Make this to the prefix of your target files. EX: scheduler
-NAME_RULE="scheduler-*.c"
+# Make this to the prefix of your target files. EX: scheduler
+NAME_RULE="scheduler*.c"
 TARGETS=$(shell ls "./$(NAME_RULE)" | awk '{print $$1}' | sed -e 's/\.c//g') 
 
-# TODO : Choose your directories
+# Choose your directories
 SRC_DIR=./
 OUT_DIR=../obj
 OUT_BIN_DIR=../bin
@@ -16,23 +16,33 @@ ifndef PWRN
 endif
 
 CFLAGS=-O2 -std=c99 -Wall
+green=\e[1;32m
+NC=\e[0m # No Color
 
 all	:	$(TARGETS)
 
+# TODO Make it your own testing configuration, scheduler-fcfs is the name of your scheduler. Revise it to your program!!!!!
+# TODO 請把":"後面的scheduler-fcfs換成你自己的程式
+execute	:	scheduler-fcfs
+	@echo -e "\nExecuting script $(green)../runsim$(NC)\n"
+	@cd ../ && ./runsim
+	@echo -e "\nExecuting script $(green)../parse.perl$(NC)\n"
+	@cd ../ && ./parse.perl
+
 # General make
 $(TARGETS)	:	$(OBJS) 
-	@echo "building $* ... $(TARGETS)"
+	@echo -e "building $(green)$@$(NC) ..."
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -o $(OUT_BIN_DIR)/$@ $(OBJS) $@.c
 
 # Make yours if you define variables which is conflict with others or you want to name by your-self. 
 scheduler-frfcfs	:	$(OBJS)
-	@echo "building $* ..."
+	@echo -e "building $(green)$@$(NC) ..."
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -DCAPN=$(CAPN) -o $(OUT_BIN_DIR)/$@-$(CAPN) $(OBJS) $@.c
 
 scheduler-pwrdn	:	$(OBJS)
-	@echo "building $* ..."
+	@echo -e "building $(green)$@$(NC) ..."
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -DPWRN=$(PWRN) -o $(OUT_BIN_DIR)/$@-$(PWRN) $(OBJS) $@.c
 

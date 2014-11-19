@@ -6,3 +6,5 @@ GRTAGS
 GTAGS
 GSYMS
 bin
+cscope*
+tags
