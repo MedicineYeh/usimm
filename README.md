@@ -45,6 +45,12 @@ The root directory has the following directories and files:
 * parse.perl: This is for parsing the simulation result into `stats.csv`.
 * CRAPL-LICENSE.txt: The CRAPL license.
 
+## Fast development build
+1. Modify the file __./runsim__ to suit your needs
+2. Make an output directory by `mkdir output`
+3. `cd src/` Enter source diectory
+4. Run `make execute` to build, execute, and parse
+
 ## Build the sources
 1. `cd src/` The src directory.
 2. `make clean`
@@ -55,7 +61,7 @@ example simulation script.
 
 4. Go to repository root directory by `cd ../`
 5. Download input from .... It's your bussiness!
-6. Modify __./runsim__ to your needs.
+6. Modify __./runsim__ to suit your needs.
 7. Run executable `./runsim` to check whether the environment is set correctly.
 8. Execute `ps` to check whether it's running in the background.
 

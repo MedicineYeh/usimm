@@ -31,18 +31,18 @@ execute	:	scheduler-fcfs
 
 # General make
 $(TARGETS)	:	$(OBJS) 
-	@echo -e "building $(green)$@$(NC) ..."
+	@echo -e "building $(green)$@$(NC)"
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -o $(OUT_BIN_DIR)/$@ $(OBJS) $@.c
 
 # Make yours if you define variables which is conflict with others or you want to name by your-self. 
 scheduler-frfcfs	:	$(OBJS)
-	@echo -e "building $(green)$@$(NC) ..."
+	@echo -e "building $(green)$@$(NC)"
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -DCAPN=$(CAPN) -o $(OUT_BIN_DIR)/$@-$(CAPN) $(OBJS) $@.c
 
 scheduler-pwrdn	:	$(OBJS)
-	@echo -e "building $(green)$@$(NC) ..."
+	@echo -e "building $(green)$@$(NC)"
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -DPWRN=$(PWRN) -o $(OUT_BIN_DIR)/$@-$(PWRN) $(OBJS) $@.c
 
