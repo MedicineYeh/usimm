@@ -14,16 +14,20 @@ endif
 ifndef PWRN
 	PWRN=1
 endif
+ifndef MARKING_CAP
+	MARKING_CAP=20
+endif
+
 
 CFLAGS=-O2 -std=c99 -Wall
-green=\e[1;32m
-NC=\e[0m # No Color
+green=\033[1;32m
+NC=\033[0m # No Color
 
 all	:	$(TARGETS)
 
 # TODO Make it your own testing configuration, scheduler-fcfs is the name of your scheduler. Revise it to your program!!!!!
 # TODO 請把":"後面的scheduler-fcfs換成你自己的程式
-execute	:	scheduler-fcfs
+execute	:	scheduler-parbs
 	@echo -e "\nExecuting script $(green)../runsim$(NC)\n"
 	@cd ../ && ./runsim
 	@echo -e "\nExecuting script $(green)../parse.perl$(NC)\n"
@@ -45,6 +49,11 @@ scheduler-pwrdn	:	$(OBJS)
 	@echo -e "building $(green)$@$(NC)"
 	@mkdir -p $(OUT_BIN_DIR)
 	$(CC) $(CFLAGS) -DPWRN=$(PWRN) -o $(OUT_BIN_DIR)/$@-$(PWRN) $(OBJS) $@.c
+
+scheduler-parbs	:	$(OBJS)
+	@echo -e "building $(green)$@$(NC)"
+	@mkdir -p $(OUT_BIN_DIR)
+	$(CC) $(CFLAGS) -DMARKING_CAP=$(MARKING_CAP) -o $(OUT_BIN_DIR)/$@-$(MARKING_CAP) $(OBJS) $@.c
 
 $(OUT_DIR)/%.o	:	%.c
 	@mkdir -p $(@D)
