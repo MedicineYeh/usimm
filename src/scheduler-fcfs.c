@@ -85,6 +85,7 @@ schedule (int channel)
         {
             if (wr_ptr->command_issuable)
             {
+                printf("command : %d\n", wr_ptr->next_command);
                 issue_request_command (wr_ptr);
                 break;
             }
@@ -102,6 +103,7 @@ schedule (int channel)
         {
             if (rd_ptr->command_issuable)
             {
+                printf("command : %d\n", rd_ptr->next_command);
                 issue_request_command (rd_ptr);
                 break;
             }
