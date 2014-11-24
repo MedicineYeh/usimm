@@ -25,8 +25,8 @@
 #include <assert.h>
 
 #include "params.h"
-#include "scheduler.h"
 #include "memory_controller.h"
+#include "scheduler-mlp.h"
 
 #define HI_WM 40
 #define LO_WM 20
@@ -172,7 +172,6 @@ void schedule(int channel)
     request_t * wr_ptr = NULL;
 
 
-    int i;
     int max=-1;
     request_t* rd_ptr_best=NULL;
     dram_address_t temp;
