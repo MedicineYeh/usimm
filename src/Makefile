@@ -15,7 +15,7 @@ ifndef PWRN
 	PWRN=1
 endif
 ifndef MARKING_CAP
-	MARKING_CAP=20
+	MARKING_CAP=5
 endif
 
 
